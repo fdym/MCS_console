@@ -73,9 +73,3 @@ class Mohist(models.Model):
     BuildNumber = models.IntegerField() # Build number,example:10
     URL = models.URLField(max_length=150) # URL
     ThirdPartySourceURL = models.URLField(max_length=150) # Third-party source URL
-
-class Bedrock(models.Model):
-    MCVersion = models.CharField(max_length=25,primary_key=True) # Minecraft version
-    Type = models.CharField(max_length=15) # Developnent status,example:release
-    URL = models.URLField(max_length=150) # URL
-    ThirdPartySourceURL = models.URLField(max_length=150) # Third-party source URL
