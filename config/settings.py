@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'mcserver',
+    'server_docs',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,3 +124,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# The following are the settings for MCS_console.
+# The enabled HTML file (requires the input of the ".html" suffix).
+
+ENABLED_HTML = ['test.html']
