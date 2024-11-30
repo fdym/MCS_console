@@ -66,11 +66,14 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'builtins': ['django.templatetags.static']
         },
     },
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+
+ASGI_APPLICATION = 'config.asgi.application'
 
 
 # Database
@@ -126,6 +129,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # The following are the settings for MCS_console.
+# Server name (such as Hypixel).
+
+SERVER_NAME = 'Myserver'
+
 # The enabled HTML file (requires the input of the ".html" suffix).
 
-ENABLED_HTML = ['test.html']
+ENABLED_HTML = {'test.html': 'Test page'}

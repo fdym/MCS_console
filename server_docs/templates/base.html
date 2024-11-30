@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" sizes="any" href="{% static 'server_docs/images/icon.ico' %}"/>
+        <link href="{% static 'server_docs/images/picture.png' %}"/>
+        <link rel="stylesheet" href="{% static 'server_docs/css/base.css' %}"/>
+        <title>{{ title }}&nbsp|&nbsp{{ server_name }}</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left">
+                <img alt="MCS console logo" src={% static 'server_docs/images/picture.png' %} class="picture">
+            </div>
+            <div class="right">{% block content %}{% endblock content %}</div>
+        </div>
+    </body>
+</html>

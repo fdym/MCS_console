@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+.left {
+    flex-basis: 300px;
+    height: 100vh;
+    background-color: gray;
+    overflow-y: auto;
+}
+.right {
+    flex-grow: 1;
+    height: 100vh;
+    background-color: gainsboro;
+    overflow-y: auto;
+}
+.picture {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+}

@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>test</title>
-        <style>
-            .test {
-                background-color: aqua;
-                border: 5px solid black;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Test</h1>
-        <div class="test">
-            <p>This is a test page.</p>
-        </div>
-    </body>
-</html>
+{% extends "./base.html" %}
+{% block content %}
+<h1>Test</h1>
+<div style="background-color: aqua; border: 5px solid black;">
+    <p>This is a test page.</p>
+</div>
+{% endblock content %}
