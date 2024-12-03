@@ -15,7 +15,13 @@
     overflow-y: auto;
 }
 .picture {
-    position: absolute;
-    top: 18px;
-    left: 18px;
+    padding-top: 9px;
+    padding-left: 9px;
+    padding-bottom: 9px;
+}
+.button {
+    display: block;
+    width: 100%;
+    padding: 8px 4px;
+    text-align: left;
 }

@@ -1,13 +1,20 @@
 from django.urls import path
-from django.conf import settings
 from django.shortcuts import render
 
-from config.settings import ENABLED_HTML,SERVER_NAME
+from .views import api_enabled_html
 
-urlpatterns = []
+from config.settings import ENABLED_HTML, SERVER_NAME
+
+def render_builder(template_name: str, context: dict):
+    return lambda request:render(request, template_name, context)
+
+
+urlpatterns = [
+    path('api/enabled_html/', api_enabled_html)
+]
 
 for i in ENABLED_HTML.keys():
     urlpatterns.append(path(
         i.replace('.html', ''),
-        lambda request:render(request, i, {'title': ENABLED_HTML[i], 'server_name': SERVER_NAME})
+        render_builder(i, {'title': ENABLED_HTML[i], 'server_name': SERVER_NAME})
     ))

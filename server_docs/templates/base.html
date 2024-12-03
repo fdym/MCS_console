@@ -5,14 +5,42 @@
         <link rel="icon" sizes="any" href="{% static 'server_docs/images/icon.ico' %}"/>
         <link href="{% static 'server_docs/images/picture.png' %}"/>
         <link rel="stylesheet" href="{% static 'server_docs/css/base.css' %}"/>
-        <title>{{ title }}&nbsp|&nbsp{{ server_name }}</title>
+        <script src="{% static 'server_docs/js/jquery.js' %}"></script>
+        <title>{{ title }} | {{ server_name }}</title>
     </head>
     <body>
         <div class="container">
-            <div class="left">
-                <img alt="MCS console logo" src={% static 'server_docs/images/picture.png' %} class="picture">
+            <div class="left" id="left">
+                <a id="picture"><img alt="MCS console logo" src="{% static 'server_docs/images/picture.png' %}" class="picture"></a>
             </div>
-            <div class="right">{% block content %}{% endblock content %}</div>
+            <div class="right">
+                {% block content %}{% endblock content %}
+            </div>
+            <script>
+                $(document).ready(function() {
+                    $.getJSON('/api/enabled_html', function(data) {
+                        var firstKey = Object.keys(data)[0];
+                        var firstValue = data[firstKey];
+                        $('#picture').attr('href', ('/' + firstKey).replace('.html', ''));
+                        $('#picture').attr('title', firstValue + ' | {{ server_name }}') 
+
+                        var keys = Object.keys(data);
+                        for (var i = 0; i < keys.length; i++) {
+                            var key = keys[i];
+                            var value = data[key]
+                            $('#left').append($('<a href="' 
+                            + ('/' + key).replace('.html', '') 
+                            + '" title="' 
+                            + value
+                            + ' | {{ server_name }}"><button class="button"><big>' 
+                            + value 
+                            + '</big></button></a>'))
+                        }
+                    }).fail(function() {
+                        console.error('404 error: API connection timeout.');
+                    });
+                });
+            </script>
         </div>
     </body>
 </html>
