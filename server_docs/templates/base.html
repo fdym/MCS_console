@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8"/>
         <link rel="icon" sizes="any" href="{% static 'server_docs/images/icon.ico' %}"/>
-        <link href="{% static 'server_docs/images/picture.png' %}"/>
         <link rel="stylesheet" href="{% static 'server_docs/css/base.css' %}"/>
         <script src="{% static 'server_docs/js/jquery.js' %}"></script>
         <title>{{ title }} | {{ server_name }}</title>
@@ -12,11 +11,22 @@
         <div class="container">
             <div class="left" id="left">
                 <a id="picture"><img alt="MCS console logo" src="{% static 'server_docs/images/picture.png' %}" class="picture"></a>
+                <a href="/search" title="Search page" class="to-search-container" id="to-search-container">
+                    <button class="to-search"><big>Search page</big></button>
+                </a>
             </div>
             <div class="right">
                 {% block content %}{% endblock content %}
             </div>
             <script>
+                function redirect() {
+                    $(document).ready(function() {
+                        var _value = $('#search-bar').attr('value');
+                        var value = _value;//.replace(/ /g, '+');
+                        window.location.pathname = '/search?key=' + value
+                    });
+                }
+
                 $(document).ready(function() {
                     $.getJSON('/api/enabled_html', function(data) {
                         var firstKey = Object.keys(data)[0];
@@ -28,17 +38,20 @@
                         for (var i = 0; i < keys.length; i++) {
                             var key = keys[i];
                             var value = data[key]
-                            $('#left').append($('<a href="' 
-                            + ('/' + key).replace('.html', '') 
-                            + '" title="' 
-                            + value
-                            + ' | {{ server_name }}"><button class="button"><big>' 
-                            + value 
-                            + '</big></button></a>'))
+                            // <a href="/example" title="Example page" | Myserver"><button class="button"><big>Example page</big></button></a>
+                            $('#left').append($('<a href="' // <a href="
+                            + ('/' + key).replace('.html', '') // /example
+                            + '" title="' // " title="
+                            + value // Example page
+                            + ' | {{ server_name }}"><button class="button"><big>' //  | Myserver"><button class="button"><big> 
+                            + value // Example page
+                            + '</big></button></a>')) // </big></button></a>
                         }
                     }).fail(function() {
                         console.error('404 error: API connection timeout.');
                     });
+                    var pictureWidth = $('#picture').width() - 9;
+                    $('#to-search-container').width(pictureWidth);
                 });
             </script>
         </div>

@@ -10,10 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from .mcs_console import *
+
 from pathlib import Path
 
+from os.path import dirname
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Your configuration directory (which includes asgi.py, wsgi.py and so on).
+# CONFIG_DIR = dirname(__file__)
+CONFIG_DIR = dirname(dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -127,12 +135,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# The following are the settings for MCS_console.
-# Server name (such as Hypixel).
-
-SERVER_NAME = 'Myserver'
-
-# The enabled HTML file (requires the input of the ".html" suffix).
-
-ENABLED_HTML = {'test.html': 'Test page'}

@@ -17,11 +17,36 @@
 .picture {
     padding-top: 9px;
     padding-left: 9px;
-    padding-bottom: 9px;
 }
 .button {
     display: block;
     width: 100%;
     padding: 8px 4px;
     text-align: left;
+}
+.search-container {
+    display: flex;
+    padding-left: 9px;
+    padding-bottom: 9px;
+}
+.search-bar {
+    border: 2px;
+    padding: 0px;
+    flex-grow: 1;
+    height: 32px;
+}
+.search-button {
+    border: 0px;
+    padding: 0px;
+    width: 32px;
+    height: 32px;
+}
+.to-search-container {
+    display: flex;
+    padding-left: 9px;
+    padding-bottom: 9px;
+    height: 32px;
+}
+.to-search {
+    flex-grow: 1;
 }
